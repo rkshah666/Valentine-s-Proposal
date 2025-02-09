@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Proposal ❤️</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color: pink;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        max-width: 90%;
+        width: 400px;
+      }
+      h1 {
+        font-size: 1.8rem;
+        color: red;
+      }
+      h2,
+      h3,
+      h5,
+      h6 {
+        font-size: 1rem;
+      }
+      h5 {
+        font-size: 1rem;
+        margin: 15px 0;
+        line-height: 1.4;
+      }
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      button {
+        font-size: 1.2rem;
+        padding: 12px 18px;
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        min-width: 120px;
+      }
+      #yes {
+        background-color: red;
+        color: white;
+      }
+      #no {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
+      }
+      #openInBrowser {
+        margin-top: 20px;
+        background-color: blue;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+        .container {
+          max-width: 95%;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        h5 {
+          font-size: 0.9rem;
+        }
+        button {
+          font-size: 1rem;
+          padding: 10px 14px;
+          min-width: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>💖 Will you be my Valentine? 💖</h1>
+      <h2>Hello, I am Ranjit. I have a proposal for you...</h2>
+      <h3>❤️MY❤️C❤️R❤️U❤️S❤️H❤️!</h3>
+      <h5>
+        From the moment I knew you, my world changed in ways I never imagined.
+        Your smile brightens my darkest days, your laughter is my favorite
+        melody, and your love makes every moment magical. On this special day of
+        love, I want to ask you something straight from my heart—will you be
+        mine, not just for today, but for all the days to come? ❤️💍
+      </h5>
+      <h6>Please Click on Yes❤️ or No😢</h6>
+      <div class="buttons">
+        <button id="yes" onclick="acceptProposal()">Yes ❤️</button>
+        <button id="no" onclick="rejectProposal()">No 😢</button>
+      </div>
+      <button id="openInBrowser" onclick="openInDefaultBrowser()">
+        Open in Chrome/Safari
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+    
+      setTimeout(() => {
+        emailjs.init("6XeyBZCjpogFMrFGz");
+      }, 500);
+
+      function sendNotification(status) {
+        let templateParams = {
+          to_name: "Ranjit Shah",
+          message: status,
+          to_email: "rkshah6699@gmail.com",
+        };
+
+        
+        setTimeout(() => {
+          emailjs
+            .send("service_6mtvs05", "template_05td1t9", templateParams)
+            .then(
+              function (response) {
+                console.log("SUCCESS!", response.status, response.text);
+              },
+              function (error) {
+                console.log("FAILED...", error);
+              }
+            );
+        }, 1000);
+      }
+
+      function acceptProposal() {
+        document.body.innerHTML =
+          "<h1>Yay! 🎉 I love you Too ❤️ Ranjit ❤️! 🎉 Thank You SO Much 🎉 ❤️</h1>";
+        document.body.style.backgroundColor = "#ff69b4";
+        sendNotification("She said YES! ❤️");
+      }
+
+      function rejectProposal() {
+        document.body.innerHTML =
+          "<h1>Oh no😢! 💔 It's okay, I still think you're amazing 💔 RANJIT 💔😢!</h1>";
+        document.body.style.backgroundColor = "#ccc";
+        sendNotification("She said NO 💔");
+      }
+
+      function openInDefaultBrowser() {
+        const url = window.location.href;
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>
